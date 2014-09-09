@@ -1883,8 +1883,8 @@ int uv_pipe_open(uv_pipe_t* pipe, uv_file file) {
     return UV_EINVAL;
 
   if (pipe->ipc) {
-    if (!(access.AccessFlags & FILE_WRITE_DATA) ||
-        !(access.AccessFlags & FILE_READ_DATA)) {
+    if (!((access.AccessFlags & FILE_WRITE_DATA) ||
+          (access.AccessFlags & FILE_READ_DATA))) {
       return UV_EINVAL;
     }
   }
